@@ -1,0 +1,36 @@
+:root {
+    --bs-secondary: #eaeaea;
+    --bs-secondary-rgb: 234, 234, 234;
+    --bs-info: #8edafc;
+    --bs-info-rgb: 142, 218, 252;
+
+}
+
+.avatar-width {
+    width: 50px;
+}
+
+i {
+    color: #b1b1b1;
+    font-size: 18px;
+}
+
+i:hover {
+    color: #8b8b8b;
+}
+
+.notification-bell {
+    color: var(--bs-info);
+}
+
+.notification-bell:hover {
+    color: var(--bs-info);
+}
+
+.my-fs-7 {
+    font-size: .8rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

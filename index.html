@@ -27,6 +27,76 @@
 
 <body>
     <div id="app">
+
+        <div class="vh-100 d-flex overflow-auto">
+            <div class="container pt-4 pb-5 d-flex flex-row">
+                <!-- Sezione laterale  -->
+                <nav class="w-25 d-flex flex-column">
+                    <!-- Sottosezione avatar -->
+                    <div class="bg-secondary border-end border-2 p-2 ps-3 d-flex justify-content-between">
+                        <div class="d-flex align-items-center cursor-pointer">
+                            <img class="avatar-width rounded-circle" src="img/avatar_io.jpg" alt="avatar utente">
+                            <p class="p-0 m-0 ps-2 fw-bold">Sofia</p>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <i class="fa-solid fa-circle-notch ps-3 pe-3 cursor-pointer"></i>
+                            <i class="fa-solid fa-message cursor-pointer"></i>
+                            <i class="fa-solid fa-ellipsis-vertical ps-3 pe-3 cursor-pointer"></i>
+                        </div>
+                    </div>
+                    <!-- Sottosezione attiva/disattiva notifiche -->
+                    <div class="d-flex align-items-center p-2 ps-3 bg-info">
+                        <div class="rounded-circle bg-white p-2 cursor-pointer">
+                            <i class="fa-solid fa-bell-slash notification-bell"></i>
+                        </div>
+                        <div class="lh-sm">
+                            <p class="fw-bold p-0 m-0 ps-2 my-fs-7">Ricevi notifiche di nuovi messaggi</p>
+                            <a href="#" class="link-secondary link-offset-1 my-fs-7 p-0 m-0 ps-2">Attiva notifiche
+                                desktop</a>
+                        </div>
+                    </div>
+                    <!-- Sottosezione barra di ricerca -->
+                    <div class="bg-secondary p-2">
+                        <div class="input-group">
+                            <span class="input-group-text cursor-pointer bg-white ps-3 pe-3">
+                                <i class="fa-solid fa-magnifying-glass fs-6"></i>
+                            </span>
+                            <input type="search" class="form-control my-fs-7"
+                                placeholder="Cerca o inizia una nuova chat">
+                        </div>
+                    </div>
+                    <!-- Sottosezine chat create -->
+                    <div class="d-flex flex-column overflow-x-hidden overflow-y-auto">
+                        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint id architecto doloremque iste
+                            eius, tempore delectus rerum nulla a quis earum quod voluptatem unde, vel necessitatibus
+                            voluptatum, nemo itaque laboriosam.</h1>
+                        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint id architecto doloremque iste
+                            eius, tempore delectus rerum nulla a quis earum quod voluptatem unde, vel necessitatibus
+                            voluptatum, nemo itaque laboriosam.</h1>
+                    </div>
+                </nav>
+
+                <!-- Sezione centrale -->
+                <main class="w-75">
+                    <!-- Sottosezione avatar -->
+                    <div class="bg-secondary p-2 ps-3 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-sm">
+                            <img class="avatar-width rounded-circle" src="img/avatar_1.jpg" alt="avatar chat">
+                            <div>
+                                <p class="p-0 m-0 ps-2 fw-bold">Michele</p>
+                                <p class="p-0 m-0 ps-2 my-fs-7">Ultimo accesso oggi alle 12:00</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <i class="fa-solid fa-magnifying-glass ps-3 pe-3 cursor-pointer"></i>
+                            <i class="fa-solid fa-paperclip cursor-pointer"></i>
+                            <i class="fa-solid fa-ellipsis-vertical ps-3 pe-3 cursor-pointer"></i>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
     </div>
 
     <!-- Custom Js -->
