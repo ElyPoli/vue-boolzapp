@@ -28,8 +28,8 @@
 <body>
     <div id="app">
 
-        <div class="vh-100 d-flex overflow-auto">
-            <div class="container pt-4 pb-5 d-flex flex-row">
+        <div class="vh-100 d-flex overflow-hidden bg-container">
+            <div class="container pt-4 pb-4 d-flex flex-row">
                 <!-- Sezione laterale  -->
                 <nav class="w-25 d-flex flex-column">
                     <!-- Sottosezione avatar -->
@@ -66,18 +66,23 @@
                         </div>
                     </div>
                     <!-- Sottosezine chat create -->
-                    <div class="d-flex flex-column overflow-x-hidden overflow-y-auto">
-                        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint id architecto doloremque iste
-                            eius, tempore delectus rerum nulla a quis earum quod voluptatem unde, vel necessitatibus
-                            voluptatum, nemo itaque laboriosam.</h1>
-                        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint id architecto doloremque iste
-                            eius, tempore delectus rerum nulla a quis earum quod voluptatem unde, vel necessitatibus
-                            voluptatum, nemo itaque laboriosam.</h1>
+                    <div class="d-flex flex-column overflow-x-hidden overflow-y-auto bg-white h-100">
+                        <div class="d-flex justify-content-between p-2 ps-3 pe-3 border-bottom">
+                            <div class="d-flex justify-content-between">
+                                <img class="avatar-width rounded-circle cursor-pointer" src="img/avatar_1.jpg"
+                                    alt="avatar utente">
+                                <div class="ps-2 lh-sm cursor-pointer">
+                                    <p class="p-0 m-0 fw-bold">Michele</p>
+                                    <p class="p-0 m-0 my-fs-7">Ultimo messaggio inviato</p>
+                                </div>
+                            </div>
+                            <p class="p-0 m-0 ps-2 my-fs-7">12:00</p>
+                        </div>
                     </div>
                 </nav>
 
                 <!-- Sezione centrale -->
-                <main class="w-75">
+                <main class="w-75 d-flex flex-column">
                     <!-- Sottosezione avatar -->
                     <div class="bg-secondary p-2 ps-3 d-flex justify-content-between">
                         <div class="d-flex align-items-center lh-sm">
@@ -93,10 +98,31 @@
                             <i class="fa-solid fa-ellipsis-vertical ps-3 pe-3 cursor-pointer"></i>
                         </div>
                     </div>
+                    <!-- Sottosezione centrale con i messaggi -->
+                    <div class="my-bg-box-messages d-flex flex-column overflow-x-hidden overflow-y-auto p-5 h-100">
+                        <div class="message message-received align-self-start">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum est voluptate ducimus
+                            officia pariatur a, laboriosam necessitatibus quasi nihil unde aspernatur facere? Distinctio
+                            repellat necessitatibus reprehenderit consequuntur temporibus culpa autem.
+                            <p>16:15</p>
+                        </div>
+                        <div class="message message-sent align-self-end">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos placeat quae molestias ut
+                            quis ea quidem vel, consectetur modi voluptatum. Consectetur, ex provident nisi in iste
+                            corporis quidem reprehenderit obcaecati!
+                            <p>15:50</p>
+                        </div>
+                    </div>
+                    <!-- Sottosezione invio nuovo messaggio -->
+                    <div class="bg-secondary d-flex justify-content-between align-items-center p-3 pt-2 pb-2">
+                        <i class="fa-regular fa-face-smile ps-3 pe-3 cursor-pointer"></i>
+                        <input class="form-control form-control-lg my-fs-7" type="text"
+                            placeholder="Scrivi un messaggio">
+                        <i class="fa-solid fa-microphone ps-3 pe-3 cursor-pointer"></i>
+                    </div>
                 </main>
             </div>
         </div>
-
     </div>
 
     <!-- Custom Js -->
