@@ -67,12 +67,15 @@
                     </div>
                     <!-- Sottosezine chat create -->
                     <div class="d-flex flex-column overflow-x-hidden overflow-y-auto bg-white h-100">
-                        <div class="d-flex justify-content-between p-2 ps-3 pe-3 border-bottom">
+                        <div class="d-flex justify-content-between p-2 ps-3 pe-3 border-bottom"
+                            v-for="contact in contactsList">
                             <div class="d-flex justify-content-between">
-                                <img class="avatar-width rounded-circle cursor-pointer" src="img/avatar_1.jpg"
-                                    alt="avatar utente">
+                                <img class="avatar-width rounded-circle cursor-pointer" v-bind:src="contactImgAvatar(contact)"
+                                    v-bind:alt="contact.name">
                                 <div class="ps-2 lh-sm cursor-pointer">
-                                    <p class="p-0 m-0 fw-bold">Michele</p>
+                                    <p class="p-0 m-0 fw-bold">
+                                        {{ contact.name }}
+                                    </p>
                                     <p class="p-0 m-0 my-fs-7">Ultimo messaggio inviato</p>
                                 </div>
                             </div>
@@ -122,6 +125,7 @@
                     </div>
                 </main>
             </div>
+
         </div>
     </div>
 

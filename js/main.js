@@ -85,6 +85,12 @@ const app = Vue.createApp({
                 },
             ],
         }
+    },
+    methods: {
+        contactImgAvatar(contact) {
+            let contactImageAvatar = `img/avatar${contact.avatar}.jpg`;
+            return contactImageAvatar;
+        }
     }
 })
 
