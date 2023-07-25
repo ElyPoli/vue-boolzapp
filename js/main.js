@@ -84,13 +84,28 @@ const app = Vue.createApp({
                     ],
                 },
             ],
+            contactOpen: null,
+            currentIndex: 0,
         }
     },
     methods: {
         contactImgAvatar(contact) {
-            let contactImageAvatar = `img/avatar${contact.avatar}.jpg`;
-            return contactImageAvatar;
-        }
+            return `img/avatar${contact.avatar}.jpg`;
+        },
+        chatOpen(i) {
+            this.contactOpen = this.contactsList[i];
+        },
+        formattedTime(singleMessage) {
+            let time = singleMessage.date.split(" ");
+            let nowTime = time[1].split(":");
+            let hours = nowTime[0];
+            let minutes = nowTime[1];
+
+            return `${hours}:${minutes}`;
+        },
+    },
+    beforeMount() {
+        this.contactOpen = this.contactsList[0];
     }
 })
 
