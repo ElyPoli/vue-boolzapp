@@ -85,14 +85,12 @@ const app = Vue.createApp({
                 },
             ],
             contactOpen: null,
-            currentIndex: 0,
-            newMessage: [
-                {
-                    date: this.currentDate(),
-                    message: "",
-                    status: "",
-                },
-            ],
+            newMessage:
+            {
+                date: this.currentDate(),
+                message: "",
+                status: "",
+            },
         }
     },
     methods: {
@@ -137,14 +135,25 @@ const app = Vue.createApp({
             this.contactOpen.messages.push(cloneNewMessage);
 
             // Svuoto il campo di input
-            this.newMessage = [
-                {
-                    date: this.currentDate(),
-                    message: "",
-                    status: "",
-                },
-            ];
+            this.newMessage =
+            {
+                date: this.currentDate(),
+                message: "",
+                status: "",
+            };
+
+            // Genero la risposta
+            setTimeout(this.addAnswer, 1000);
         },
+        addAnswer() {
+            // Creo una copia del nuovo elemento per perdere la reattività
+            const cloneNewMessage = { ...this.newMessage };
+
+            cloneNewMessage.message = "Ok";
+            cloneNewMessage.status = "received";
+            cloneNewMessage.date = this.currentDate();
+            this.contactOpen.messages.push(cloneNewMessage);
+        }
     },
     beforeMount() {
         this.contactOpen = this.contactsList[0];
