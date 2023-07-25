@@ -126,7 +126,7 @@
                     <div class="bg-secondary d-flex justify-content-between align-items-center p-3 pt-2 pb-2">
                         <i class="fa-regular fa-face-smile ps-3 pe-3 cursor-pointer"></i>
                         <input class="form-control form-control-lg my-fs-7" type="text"
-                            placeholder="Scrivi un messaggio">
+                            placeholder="Scrivi un messaggio" v-model="newMessage.message" @keyup.enter="addNewMessage()">
                         <i class="fa-solid fa-microphone ps-3 pe-3 cursor-pointer"></i>
                     </div>
                 </main>

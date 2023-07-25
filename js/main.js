@@ -86,6 +86,13 @@ const app = Vue.createApp({
             ],
             contactOpen: null,
             currentIndex: 0,
+            newMessage: [
+                {
+                    date: this.currentDate(),
+                    message: "",
+                    status: "",
+                },
+            ],
         }
     },
     methods: {
@@ -102,6 +109,41 @@ const app = Vue.createApp({
             let minutes = nowTime[1];
 
             return `${hours}:${minutes}`;
+        },
+        currentDate() {
+            let date = new Date();
+            let day = date.getDay();
+            let month = date.getMonth();
+            let year = date.getFullYear();
+            let hours = date.getHours();
+            if (hours < 10) {
+                hours = `0${hours}`;
+            }
+            let minutes = date.getMinutes();
+            if (minutes < 10) {
+                minutes = `0${minutes}`;
+            }
+            let seconds = date.getSeconds();
+            let current = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+
+            return current;
+        },
+        addNewMessage() {
+            // Creo una copia del nuovo elemento per perdere la reattività
+            const cloneNewMessage = { ...this.newMessage };
+
+            cloneNewMessage.status = "sent";
+            cloneNewMessage.date = this.currentDate();
+            this.contactOpen.messages.push(cloneNewMessage);
+
+            // Svuoto il campo di input
+            this.newMessage = [
+                {
+                    date: this.currentDate(),
+                    message: "",
+                    status: "",
+                },
+            ];
         },
     },
     beforeMount() {
