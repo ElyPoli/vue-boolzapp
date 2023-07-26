@@ -92,15 +92,30 @@ const app = Vue.createApp({
                 status: "",
             },
             searchChat: "",
+            notification: false,
         }
     },
     methods: {
+        /**
+         * Restituisce il percorso completo per l'avatar dell'utente
+         * @param {Object} contact 
+         * @returns {string}
+         */
         contactImgAvatar(contact) {
             return `img/avatar${contact.avatar}.jpg`;
         },
+        /**
+         * Mostra la chat del contatto selezionato
+         * @param {number} i 
+         */
         chatOpen(i) {
             this.contactOpen = this.contactsList[i];
         },
+        /**
+         * Dalla data completa restituisce una stringa con ore e minuti
+         * @param {Object} singleMessage 
+         * @returns {string}
+         */
         formattedTime(singleMessage) {
             let time = singleMessage.date.split(" ");
             let nowTime = time[1].split(":");
@@ -109,6 +124,10 @@ const app = Vue.createApp({
 
             return `${hours}:${minutes}`;
         },
+        /**
+         * Restituisce una stringa con la data attuale completa
+         * @returns {string}
+         */
         currentDate() {
             let date = new Date();
             let day = date.getDay();
@@ -127,30 +146,39 @@ const app = Vue.createApp({
 
             return current;
         },
+        /**
+         * Aggiunge un nuovo messaggio alla chat corrente e genera una risposta automatica dopo un secondo
+         */
         addNewMessage() {
-            // Creo una copia del nuovo elemento per perdere la reattività
-            const cloneNewMessage = { ...this.newMessage };
+            // Controllo se il messaggio contiene del testo
+            if (this.newMessage.message != "") {
+                // Creo una copia del nuovo elemento per perdere la reattività
+                const cloneNewMessage = { ...this.newMessage };
 
-            cloneNewMessage.status = "sent";
-            cloneNewMessage.date = this.currentDate();
-            this.contactOpen.messages.push(cloneNewMessage);
+                cloneNewMessage.status = "sent";
+                cloneNewMessage.date = this.currentDate();
+                this.contactOpen.messages.push(cloneNewMessage);
 
-            // Svuoto il campo di input
-            this.newMessage =
-            {
-                date: this.currentDate(),
-                message: "",
-                status: "",
-            };
+                // Svuoto il campo di input
+                this.newMessage =
+                {
+                    date: this.currentDate(),
+                    message: "",
+                    status: "",
+                };
 
-            // Genero la risposta
-            setTimeout(this.addAnswer, 1000);
+                // Genero la risposta
+                setTimeout(this.addAnswer, 1000);
 
-            // Scrollo in automatico fino all'ultimo messaggio inserito
-            this.$nextTick(() => {
-                this.$refs.bottomAuto.scrollTop = this.$refs.bottomAuto.scrollHeight;
-            });
+                // Scrollo in automatico fino all'ultimo messaggio inserito
+                this.$nextTick(() => {
+                    this.$refs.bottomAuto.scrollTop = this.$refs.bottomAuto.scrollHeight;
+                });
+            }
         },
+        /**
+         * Aggiunge una risposta automatica alla chat corrente
+         */
         addAnswer() {
             // Creo una copia del nuovo elemento per perdere la reattività
             const cloneNewMessage = { ...this.newMessage };
@@ -165,10 +193,20 @@ const app = Vue.createApp({
                 this.$refs.bottomAuto.scrollTop = this.$refs.bottomAuto.scrollHeight;
             });
         },
+        /**
+         * Elimina il messaggio selezionato dalla chat
+         * @param {Object} singleMessage 
+         */
         deleteMessage(singleMessage) {
             let indexRemove = this.contactOpen.messages.indexOf(singleMessage); // individuo l'indice dell'elemento da eliminare
             this.contactOpen.messages.splice(indexRemove, 1);
-        }
+        },
+        /**
+         * Abilita o disabilita le notifiche desktop
+         */
+        desktopNotification() {
+            this.notification = !this.notification;
+        },
     },
     beforeMount() {
         this.contactOpen = this.contactsList[0];

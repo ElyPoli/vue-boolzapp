@@ -31,7 +31,7 @@
         <div class="vh-100 d-flex overflow-hidden bg-container">
             <div class="container pt-4 pb-4 d-flex flex-row">
                 <!-- Sezione laterale  -->
-                <nav class="w-25 d-flex flex-column">
+                <nav class="mw-25 d-flex flex-column">
                     <!-- Sottosezione avatar -->
                     <div class="bg-secondary border-end border-2 p-2 ps-3 d-flex justify-content-between">
                         <div class="d-flex align-items-center cursor-pointer">
@@ -46,13 +46,20 @@
                     </div>
                     <!-- Sottosezione attiva/disattiva notifiche -->
                     <div class="d-flex align-items-center p-2 ps-3 bg-info">
-                        <div class="rounded-circle bg-white p-2 cursor-pointer">
-                            <i class="fa-solid fa-bell-slash notification-bell"></i>
+                        <div v-bind:class="(notification === false ? 'rounded-circle bg-white p-2 cursor-pointer' : '')">
+                            <i
+                                v-bind:class="(notification === false ? 'fa-solid fa-bell-slash notification-bell' : '')"></i>
                         </div>
                         <div class="lh-sm">
                             <p class="fw-bold p-0 m-0 ps-2 my-fs-7">Ricevi notifiche di nuovi messaggi</p>
-                            <a href="#" class="link-secondary link-offset-1 my-fs-7 p-0 m-0 ps-2">Attiva notifiche
-                                desktop</a>
+                            <a href="#" class="link-secondary link-offset-1 my-fs-7 p-0 m-0 ps-2" v-if="notification"
+                                @click="desktopNotification()">
+                                Disattiva notifiche desktop
+                            </a>
+                            <a href="#" class="link-secondary link-offset-1 my-fs-7 p-0 m-0 ps-2" v-else
+                                @click="desktopNotification()">
+                                Attiva notifiche desktop
+                            </a>
                         </div>
                     </div>
                     <!-- Sottosezione barra di ricerca -->
