@@ -62,13 +62,14 @@
                                 <i class="fa-solid fa-magnifying-glass fs-6"></i>
                             </span>
                             <input type="search" class="form-control my-fs-7"
-                                placeholder="Cerca o inizia una nuova chat">
+                                placeholder="Cerca o inizia una nuova chat" v-model="searchChat">
                         </div>
                     </div>
                     <!-- Sottosezine chat create -->
                     <div class="d-flex flex-column overflow-x-hidden overflow-y-auto bg-white h-100">
                         <div v-for="(contact, i) in contactsList" @click="chatOpen(i)"
-                            v-bind:class="(contact === contactOpen ? 'd-flex justify-content-between p-2 ps-3 pe-3 border-bottom single-chat-box active' : 'd-flex justify-content-between p-2 ps-3 pe-3 border-bottom single-chat-box')">
+                            v-bind:class="(contact === contactOpen ? 'justify-content-between p-2 ps-3 pe-3 border-bottom single-chat-box active' : 'justify-content-between p-2 ps-3 pe-3 border-bottom single-chat-box')"
+                            v-show="((contact.name).toLowerCase().includes((searchChat).toLowerCase()))">
                             <div class="d-flex justify-content-between">
                                 <img class="avatar-width rounded-circle cursor-pointer"
                                     v-bind:src="contactImgAvatar(contact)" v-bind:alt="contact.name">
@@ -126,7 +127,8 @@
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><button class="dropdown-item" type="button" @click="deleteMessage(singleMessage)">Delete message</button></li>
+                                    <li><button class="dropdown-item" type="button"
+                                            @click="deleteMessage(singleMessage)">Delete message</button></li>
                                 </ul>
                                 <p>
                                     {{ formattedTime(singleMessage) }}

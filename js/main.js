@@ -91,6 +91,7 @@ const app = Vue.createApp({
                 message: "",
                 status: "",
             },
+            searchChat: "",
         }
     },
     methods: {

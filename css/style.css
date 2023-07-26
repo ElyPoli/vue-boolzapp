@@ -3,7 +3,6 @@
     --bs-secondary-rgb: 234, 234, 234;
     --bs-info: #8edafc;
     --bs-info-rgb: 142, 218, 252;
-
 }
 
 .avatar-width {
@@ -64,6 +63,10 @@ i:hover {
     text-align: end;
     font-size: .7rem;
     color: #8b8b8b;
+}
+
+.single-chat-box {
+    display: flex;
 }
 
 .single-chat-box:hover {
