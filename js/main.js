@@ -144,6 +144,11 @@ const app = Vue.createApp({
 
             // Genero la risposta
             setTimeout(this.addAnswer, 1000);
+
+            // Scrollo in automatico fino all'ultimo messaggio inserito
+            this.$nextTick(() => {
+                this.$refs.bottomAuto.scrollTop = this.$refs.bottomAuto.scrollHeight;
+            });
         },
         addAnswer() {
             // Creo una copia del nuovo elemento per perdere la reattività
@@ -153,6 +158,15 @@ const app = Vue.createApp({
             cloneNewMessage.status = "received";
             cloneNewMessage.date = this.currentDate();
             this.contactOpen.messages.push(cloneNewMessage);
+
+            // Scrollo in automatico fino all'ultimo messaggio inserito
+            this.$nextTick(() => {
+                this.$refs.bottomAuto.scrollTop = this.$refs.bottomAuto.scrollHeight;
+            });
+        },
+        deleteMessage(singleMessage) {
+            let indexRemove = this.contactOpen.messages.indexOf(singleMessage); // individuo l'indice dell'elemento da eliminare
+            this.contactOpen.messages.splice(indexRemove, 1);
         }
     },
     beforeMount() {

@@ -58,10 +58,27 @@ i:hover {
     background-color: #ffffff;
 }
 
-.message > p {
+.message p {
     margin: 0;
     padding: 5px 0 0 0;
     text-align: end;
     font-size: .7rem;
     color: #8b8b8b;
+}
+
+.single-chat-box:hover {
+    background-color: var(--bs-secondary);
+}
+
+.single-chat-box.active {
+    background-color: var(--bs-secondary);
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: var(--bs-secondary);
+    color: var(--bs-dropdown-link-color);
 }

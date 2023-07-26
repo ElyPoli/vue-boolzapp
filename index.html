@@ -67,8 +67,8 @@
                     </div>
                     <!-- Sottosezine chat create -->
                     <div class="d-flex flex-column overflow-x-hidden overflow-y-auto bg-white h-100">
-                        <div class="d-flex justify-content-between p-2 ps-3 pe-3 border-bottom"
-                            v-for="(contact, i) in contactsList" @click="chatOpen(i)">
+                        <div v-for="(contact, i) in contactsList" @click="chatOpen(i)"
+                            v-bind:class="(contact === contactOpen ? 'd-flex justify-content-between p-2 ps-3 pe-3 border-bottom single-chat-box active' : 'd-flex justify-content-between p-2 ps-3 pe-3 border-bottom single-chat-box')">
                             <div class="d-flex justify-content-between">
                                 <img class="avatar-width rounded-circle cursor-pointer"
                                     v-bind:src="contactImgAvatar(contact)" v-bind:alt="contact.name">
@@ -92,7 +92,7 @@
                     <!-- Sottosezione avatar -->
                     <div class="bg-secondary p-2 ps-3 d-flex justify-content-between">
                         <div v-bind:class="(contact === contactOpen ? 'd-flex align-items-center lh-sm' : '')"
-                        v-for="(contact, i) in contactsList" v-show="(contact === contactOpen)">
+                            v-for="(contact, i) in contactsList" v-show="(contact === contactOpen)">
                             <img class="avatar-width rounded-circle" v-bind:src="contactImgAvatar(contact)"
                                 v-bind:alt="contact.name">
                             <div>
@@ -100,7 +100,8 @@
                                     {{ contact.name }}
                                 </p>
                                 <p class="p-0 m-0 ps-2 my-fs-7">
-                                    Ultimo accesso alle {{ formattedTime(contact.messages[contact.messages.length - 1]) }}
+                                    Ultimo accesso alle {{ formattedTime(contact.messages[contact.messages.length - 1])
+                                    }}
                                 </p>
                             </div>
                         </div>
@@ -111,22 +112,34 @@
                         </div>
                     </div>
                     <!-- Sottosezione centrale con i messaggi -->
-                    <div class="my-bg-box-messages d-flex flex-column overflow-x-hidden overflow-y-auto p-5 h-100">
-                        <div v-bind:class="(singleMessage.status === 'sent' ? 'message message-sent align-self-end' : 'message message-received align-self-start')"
+                    <div class="my-bg-box-messages d-flex flex-column overflow-x-hidden overflow-y-auto p-5 h-100"
+                        ref="bottomAuto">
+                        <div v-bind:class="(singleMessage.status === 'sent' ? 'message message-sent align-self-end d-flex justify-content-between' : 'message message-received align-self-start d-flex justify-content-between')"
                             v-for="singleMessage in contactOpen.messages">
-                            {{ singleMessage.message }}
-                            <p>
-                                <!-- {{ singleMessage.date[11] }} {{ singleMessage.date[12] }} {{ singleMessage.date[13] }}
-                                {{ singleMessage.date[14] }} {{ singleMessage.date[15] }} -->
-                                {{ formattedTime(singleMessage) }}
-                            </p>
+                            <div>
+                                {{ singleMessage.message }}
+                            </div>
+                            <!-- Pulsante elimina messaggio -->
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle m-0 p-0 ms-2 btn-link" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><button class="dropdown-item" type="button" @click="deleteMessage(singleMessage)">Delete message</button></li>
+                                </ul>
+                                <p>
+                                    {{ formattedTime(singleMessage) }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <!-- Sottosezione invio nuovo messaggio -->
                     <div class="bg-secondary d-flex justify-content-between align-items-center p-3 pt-2 pb-2">
                         <i class="fa-regular fa-face-smile ps-3 pe-3 cursor-pointer"></i>
                         <input class="form-control form-control-lg my-fs-7" type="text"
-                            placeholder="Scrivi un messaggio" v-model="newMessage.message" @keyup.enter="addNewMessage()">
+                            placeholder="Scrivi un messaggio" v-model="newMessage.message"
+                            @keyup.enter="addNewMessage()">
                         <i class="fa-solid fa-microphone ps-3 pe-3 cursor-pointer"></i>
                     </div>
                 </main>
@@ -134,6 +147,11 @@
 
         </div>
     </div>
+
+    <!-- Bootstrap Js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 
     <!-- Custom Js -->
     <script src="js/main.js"></script>
